@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import os
 
+
 class Post(models.Model):
     title = models.CharField(max_length=30)
     hook_test = models.CharField(max_length=100, blank=True)
@@ -12,7 +13,12 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    # 작성자 추가
+    # CASCADE : 종속의 의미. 작성자가 지워지면 관련글도 삭제됨.
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # SET_NULL : 작성자가 삭제되었을 때 관련글은 NULL 처리됨.
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}'
