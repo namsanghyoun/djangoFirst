@@ -27,15 +27,15 @@ class TestView(TestCase):
 
     def test_post_list(self):
         # 1.1 포스트 목록 페이지를 가져온다.
-        response = self.client.get('/myApp/')
+        response = self.client.get('/blog/')
         # 1.2 정상적으로 페이지가 로드된다.
         self.assertEqual(response.status_code, 200)
-        # 1.3 페이지 타이틀은 'myApp'이다.
+        # 1.3 페이지 타이틀은 'blog'이다.
         soup = BeautifulSoup(response.content, 'html.parser')
-        self.assertEqual(soup.title.text, 'myApp')
+        self.assertEqual(soup.title.text, 'blog')
         # 1.4 네비게이션 바가 있다.
         #navbar = soup.nav
-        # 1.5 myApp, About Me라는 문구가 네비게이션 바에 있다.
+        # 1.5 blog, About Me라는 문구가 네비게이션 바에 있다.
         #self.assertIn('Blog', navbar.text)
         #self.assertIn('About Me', navbar.text)
         self.navbar_test(soup)
@@ -58,7 +58,7 @@ class TestView(TestCase):
         )
         self.assertEqual(Post.objects.count(), 2)
         # 3.2 포스트 목록 페이지를 새로고침했을 때
-        response = self.client.get('/myApp/')
+        response = self.client.get('/blog/')
         soup = BeautifulSoup(response.content, 'html.parser')
         self.assertEqual(response.status_code, 200)
         # 3.3 메인 영역에 포스트 2개의 타이틀이 존재한다.
@@ -76,8 +76,8 @@ class TestView(TestCase):
             content='여러 사람이 조금씩 힘을 합하면 한 사람을 돕기 쉽다.',
         )
 
-        # 1.2. 그 포스트의 url은 '/myApp/1/' 이다.
-        self.assertEqual(post_001.get_absolute_url(), '/myApp/1/')
+        # 1.2. 그 포스트의 url은 '/blog/1/' 이다.
+        self.assertEqual(post_001.get_absolute_url(), '/blog/1/')
 
         # 2. 첫 번째 포스트의 상세 페이지 테스트
         # 2.1. 첫 번째 포스트의 url로 접근하면 정상적으로 작동한다(status code: 200).

@@ -7,20 +7,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>{% block head_title %}myApp{% endblock %}</title>
+  <title>{% block head_title %}blog{% endblock %}</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{% static 'myApp/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'myApp/css/blog.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'blog/css/blog.css' %}" rel="stylesheet" media="screen">
   <!-- Font Awesome kitCode -->
   <script src="https://kit.fontawesome.com/bcac231a9e.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-{% include 'myApp/navbar.html' %}
+{% include 'blog/navbar.html' %}
 
   <!-- Page Content -->
   <div class="container">
@@ -100,7 +100,7 @@
   </div>
   <!-- /.container -->
 
-{% include 'myApp/footer.html' %}
+{% include 'blog/footer.html' %}
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

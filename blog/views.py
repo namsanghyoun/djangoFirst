@@ -16,7 +16,7 @@ class PostDetail(DetailView):
 #
 #     return render(
 #         request,
-#         'myApp/post_list.html',
+#         'blog/post_list.html',
 #         {
 #             'posts' : posts,
 #         }
@@ -27,7 +27,7 @@ class PostDetail(DetailView):
 #
 #      return render(
 #          request,
-#          'myApp/single_post_page.html',
+#          'blog/single_post_page.html',
 #          {
 #              'post' : post,
 #
