@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
+from django.contrib.auth.models import User
 from .models import Post
 
 
@@ -7,6 +8,8 @@ from .models import Post
 class TestView(TestCase):
     def setUp(self):
         self.client = Client()
+        self.user_trump = User.objects.create_user(username='trump', password='somepassword')
+        self.user_obama = User.objects.create_user(username='obama', password='somepassword')
 
     def navbar_test(self, soup):
         navbar = soup.nav
@@ -50,12 +53,15 @@ class TestView(TestCase):
         post_001 = Post.objects.create(
             title='첫째, 십시일반(十匙一飯)',
             content='여러 사람이 조금씩 힘을 합하면 한 사람을 돕기 쉽다.',
+            author =self.user_trump
         )
 
         post_002 = Post.objects.create(
             title='둘째, 시발남아(時發男兒)',
             content='남자는 때가되면 떠날줄 알아야한다.',
+            author=self.user_obama
         )
+
         self.assertEqual(Post.objects.count(), 2)
         # 3.2 포스트 목록 페이지를 새로고침했을 때
         response = self.client.get('/blog/')
@@ -67,6 +73,9 @@ class TestView(TestCase):
         self.assertIn(post_002.title, main_area.text)
         # 3.4 '아직 게시물이 없습니다.'라는 문구는 더 이상 보이지 않는다.
         self.assertNotIn('아직 게시물이 없습니다.', main_area.text)
+
+        self.assertIn(self.user_trump.username.upper(), main_area.text)
+        self.assertIn(self.user_obama.username.upper(), main_area.text)
 
     # post_detail 페이지 테스트
     def test_post_detail(self):
