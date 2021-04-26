@@ -3,6 +3,17 @@ from django.contrib.auth.models import User
 import os
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return f'/blog/tag/{self.slug}/'
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
@@ -34,9 +45,14 @@ class Post(models.Model):
     # SET_NULL : 작성자가 삭제되었을 때 작성자는 NONE 으로 출력됨. null=True 처리 필수
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
-    # 카테고리 추가
-    # blank 설정을 통해 필수로 등록해야하는지 체크
+    # 카테고리기능 추가
+    # null, blank 설정을 통해 공백입력, 필수입력 조건 설정
     category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
+
+    # 태그기능 추가
+    # ManyToManyField는 기본적으로 null=True가 설정되어 있음.
+    # on_delete 설정을 하지 않아도 삭제시 알아서 빈칸으로 처리됨.
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}'
