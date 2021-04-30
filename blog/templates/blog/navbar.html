@@ -47,6 +47,12 @@
           <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                  role="button" data-toggle="dropdown" area-haspopup="true" area-expanded="false">
+                  {% if user.socialaccount_set.all.0.get_avatar_url %}
+                      <img class="rounded-circle" width="25px" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="">
+                  {% else %}
+                      <img class="rounded-circle" width="25px" src="https://ui-avatars.com/api/?name={{ user.username }}&background=random" alt="">
+                  {% endif %}
+                  &nbsp;
                   {{ user.username }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
