@@ -21,12 +21,12 @@
         <div class="col-md-4 col-lg-3">
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Search</h5>
+                <h5 class="card-header">검색</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for..." id="search-input">
+                        <input type="text" class="form-control" placeholder="검색어를 입력하세요" id="search-input">
                         <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" onclick="searchPost();">Go!</button>
+                                <button class="btn btn-secondary" type="button" onclick="searchPost();">검색</button>
                             </span>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
 
             <!-- Categories Widget -->
             <div class="card my-4" id="categories-card">
-                <h5 class="card-header">Categories</h5>
+                <h5 class="card-header">카테고리</h5>
                 <div class="card-body">
                     <div class="row">
 
@@ -65,7 +65,7 @@
         else{
             alert('검색어('+ searchValue +')가 너무 짧습니다.');
         }
-    };
+    }
 
     document.getElementById('search-input').addEventListener('keyup', function(event){
         if(event.key === 'Enter'){
