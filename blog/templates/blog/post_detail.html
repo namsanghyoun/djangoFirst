@@ -79,7 +79,7 @@
     <div id="comment-area">
         <!-- Comments Form -->
         <div class="card my-4">
-          <h5 class="card-header">Leave a Comment:</h5>
+          <h5 class="card-header">실시간 댓글 : </h5>
           <div class="card-body">
             {% if user.is_authenticated %}
             <form id="comment-form" method="POST" action="{{ post.get_absolute_url }}new_comment/">
@@ -91,7 +91,7 @@
             </form>
             {% else %}
                 <a role="button" class="btn btn-outline-dark btn-block btn-sm"
-                   href="#" data-toggle="modal" data-target="#loginModal">Log in and leave a comment</a>
+                   href="#" data-toggle="modal" data-target="#loginModal">로그인 후 댓글을 남겨주세요.</a>
             {% endif %}
           </div>
         </div>
