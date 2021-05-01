@@ -47,11 +47,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.instagram',
-    'allauth.socialaccount.providers.naver',
-    'allauth.socialaccount.providers.twitter',
-    'allauth.socialaccount.providers.kakao',
     'blog',
     'single_pages'
 ]
