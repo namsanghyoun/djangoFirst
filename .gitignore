@@ -132,3 +132,6 @@ dmypy.json
 .idea/
 migrations/
 _media/
+#운영계배포
+.env.prod
+.env.prod.db
