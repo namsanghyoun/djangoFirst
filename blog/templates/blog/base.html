@@ -62,8 +62,12 @@
 
         if (searchValue.length === 0) {
             alert('검색어를 입력해주세요.');
+        } else if (searchValue.length === 1) {
+            alert('검색어('+ searchValue +')가 너무 짧습니다.');
         } else if (searchValue.length > 1){
             location.href="/blog/search/" + searchValue + "/";
+        } else if (searchValue.length > 40) {
+            alert('검색어('+ searchValue +')가 너무 깁니다. 40자 이내로 검색해주세요.');
         }
     }
 
